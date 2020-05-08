@@ -1,7 +1,7 @@
-org: jungle
-app: serverless-todo-app
+org: jacksonmike
+app: serverless-todo
 service:
-  name: serverless-todo-app
+  name: serverless-todo
 
 plugins:
   - serverless-webpack
@@ -21,7 +21,7 @@ provider:
   environment:
     TODOS_TABLE: serverless-todo-table-${self:provider.stage}
     INDEX_NAME: UserIdIndex
-    S3_BUCKET: serverless-todo-attachments-jng-${self:provider.stage}
+    S3_BUCKET: serverless-todo-attachments-mjj-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
 
 custom:
