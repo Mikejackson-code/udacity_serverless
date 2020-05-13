@@ -1,7 +1,7 @@
 org: jacksonmike
 app: serverless-todo
 service:
-  name: serverless-todo
+  name: redbull-todo
 
 plugins:
   - serverless-webpack
@@ -21,7 +21,7 @@ provider:
   environment:
     TODOS_TABLE: serverless-todo-table-${self:provider.stage}
     INDEX_NAME: UserIdIndex
-    S3_BUCKET: serverless-todo-mikestest-${self:provider.stage}
+    S3_BUCKET: serverless-todo-redbull-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
 
 custom:
@@ -191,9 +191,18 @@ BucketPolicy:
       Statement:
         - Sid: PublicReadWriteBucketPolicy
           Effect: Allow
-          Principal: '*' # ay 7ad mmkn y access
+          Principal: '*' 
           Action:
             - s3:GetObject
             - s3:PutObject
+            - s3:CreateBucket
+            - s3:DeleteBucketPolicy
+            - s3:GetBucketPolicy
+            - s3:GetLifecycleConfiguration
+            - s3:ListBucket
+            - s3:ListBucketMultipartUploads
+            - s3:PutBucketPolicy
+            - s3:PutLifecycleConfiguration
+
           Resource: arn:aws:s3:::${self:provider.environment.S3_BUCKET}/*
     Bucket: !Ref AttachmentBucket
