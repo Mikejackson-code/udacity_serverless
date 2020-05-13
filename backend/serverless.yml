@@ -21,7 +21,7 @@ provider:
   environment:
     TODOS_TABLE: serverless-todo-table-${self:provider.stage}
     INDEX_NAME: UserIdIndex
-    S3_BUCKET: serverless-todo-attachments-mjj-${self:provider.stage}
+    S3_BUCKET: serverless-todo-mikestest-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
 
 custom:
@@ -182,18 +182,18 @@ resources:
                 - HEAD
               MaxAge: 3000
 
-    BucketPolicy:
-      Type: AWS::S3::BucketPolicy
-      Properties:
-        PolicyDocument:
-          Id: Policy
-          Version: '2012-10-17'
-          Statement:
-            - Sid: PublicReadWriteBucketPolicy
-              Effect: Allow
-              Principal: '*' # ay 7ad mmkn y access
-              Action:
-                - s3:GetObject
-                - s3:PutObject
-              Resource: arn:aws:s3:::${self:provider.environment.S3_BUCKET}/*
-        Bucket: !Ref AttachmentBucket
+BucketPolicy:
+  Type: AWS::S3::BucketPolicy
+  Properties:
+    PolicyDocument:
+      Id: Policy
+      Version: '2012-10-17'
+      Statement:
+        - Sid: PublicReadWriteBucketPolicy
+          Effect: Allow
+          Principal: '*' # ay 7ad mmkn y access
+          Action:
+            - s3:GetObject
+            - s3:PutObject
+          Resource: arn:aws:s3:::${self:provider.environment.S3_BUCKET}/*
+    Bucket: !Ref AttachmentBucket
